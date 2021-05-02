@@ -36,6 +36,24 @@ function onGalleryContainerClick(event) {
   if (!isGalleryImage) {
     return;
   };
+  
+  const imageFullSizeUrl = event.target.dataset.source;
 
-  console.log(event.target.dataset.source);
+  const lightboxEl = document.querySelector('div.lightbox');
+  lightboxEl.classList.add('is-open');
+
+  const lightboxImageEl = document.querySelector('.lightbox__image');
+
+  lightboxImageEl.setAttribute('src', imageFullSizeUrl);
+  //console.log(lightboxImageEl);
+  
+  const closeLightboxBtn = document.querySelector('[data-action="close-lightbox"]');
+  //console.log(closeLightboxBtn);
+  
+  closeLightboxBtn.addEventListener('click', removeLightboxIsOpen);
+
+  function removeLightboxIsOpen() {
+    lightboxEl.classList.remove('is-open');
+  };
+
 };
