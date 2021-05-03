@@ -1,6 +1,9 @@
 import images from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.js-gallery');
+const lightboxImageEl = document.querySelector('.lightbox__image');
+const lightboxEl = document.querySelector('div.lightbox');
+const closeLightboxBtn = document.querySelector('[data-action="close-lightbox"]');
 const galleryMarkup = createGalleryMarkup(images);
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
@@ -39,20 +42,22 @@ function onGalleryContainerClick(event) {
   
   const imageFullSizeUrl = event.target.dataset.source;
 
-  const lightboxEl = document.querySelector('div.lightbox');
+  openLightbox(imageFullSizeUrl);
+  
+  closeLightbox();
+};
+
+function openLightbox(image) {
   lightboxEl.classList.add('is-open');
 
-  const lightboxImageEl = document.querySelector('.lightbox__image');
-
-  lightboxImageEl.setAttribute('src', imageFullSizeUrl);
+  lightboxImageEl.setAttribute('src', image);
   //console.log(lightboxImageEl);
-  
-  const closeLightboxBtn = document.querySelector('[data-action="close-lightbox"]');
-  //console.log(closeLightboxBtn);
-  
+};
+
+function closeLightbox() {
   closeLightboxBtn.addEventListener('click', removeLightboxIsOpen);
 
-  function removeLightboxIsOpen(event) {
+  function removeLightboxIsOpen() {
     lightboxEl.classList.remove('is-open');
     lightboxImageEl.setAttribute('src', '');
   };
