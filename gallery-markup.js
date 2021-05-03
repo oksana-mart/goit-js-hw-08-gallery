@@ -52,8 +52,8 @@ function onGalleryContainerClick(event) {
   
   closeLightboxBtn.addEventListener('click', removeLightboxIsOpen);
 
-  function removeLightboxIsOpen() {
+  function removeLightboxIsOpen(event) {
     lightboxEl.classList.remove('is-open');
+    lightboxImageEl.setAttribute('src', '');
   };
-
 };
