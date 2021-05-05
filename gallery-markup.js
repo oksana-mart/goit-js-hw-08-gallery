@@ -83,7 +83,7 @@ function onEscPress(event) {
   }
 };
 
-function nextImage(images) {
+function nextImage() {
   const currentImage = images.find(image => image.original === lightboxImageEl.src);
  
   let index = currentImage ? images.indexOf(currentImage) : 0;
