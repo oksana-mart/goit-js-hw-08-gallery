@@ -49,16 +49,17 @@ function openLightbox(image) {
   lightboxEl.classList.add('is-open');
   lightboxImageEl.setAttribute('src', image);
   window.addEventListener('keydown', onEscPress);
+  closeLightboxBtn.addEventListener('click', onCloseBtnClick);
+  lightboxOverlayEl.addEventListener('click', onLightboxOverlayClick);
   //console.log(lightboxImageEl);
 };
-
-closeLightboxBtn.addEventListener('click', onCloseBtnClick);
-lightboxOverlayEl.addEventListener('click', onLightboxOverlayClick);
 
 function closeModal() {
   lightboxEl.classList.remove('is-open');
   lightboxImageEl.setAttribute('src', '');
   window.removeEventListener('keydown', onEscPress);
+  closeLightboxBtn.removeEventListener('click', onCloseBtnClick);
+  lightboxOverlayEl.removeEventListener('click', onLightboxOverlayClick);
 };
 
 function onCloseBtnClick() {
