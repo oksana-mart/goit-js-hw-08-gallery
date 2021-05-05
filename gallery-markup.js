@@ -105,7 +105,6 @@ function previousImage() {
     index = images.length - 1;
   }
   lightboxImageEl.src = images[index].original;
-
 };
 
 function onArrowRightPress(event) {
