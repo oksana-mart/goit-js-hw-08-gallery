@@ -48,39 +48,24 @@ function onGalleryContainerClick(event) {
 function openLightbox(image) {
   lightboxEl.classList.add('is-open');
   lightboxImageEl.setAttribute('src', image);
-  window.addEventListener('keydown', onEscPress);
-  closeLightboxBtn.addEventListener('click', onCloseBtnClick);
+  closeLightboxBtn.addEventListener('click', onCloseModal);
   lightboxOverlayEl.addEventListener('click', onLightboxOverlayClick);
-  window.addEventListener('keydown', onArrowRightPress);
-  window.addEventListener('keydown', onArrowLeftPress);
+  window.addEventListener('keydown', onKeyPress);
   //console.log(lightboxImageEl);
 };
 
-function closeModal() {
+function onCloseModal() {
   lightboxEl.classList.remove('is-open');
   lightboxImageEl.setAttribute('src', '');
-  window.removeEventListener('keydown', onEscPress);
   closeLightboxBtn.removeEventListener('click', onCloseBtnClick);
   lightboxOverlayEl.removeEventListener('click', onLightboxOverlayClick);
-  window.removeEventListener('keydown', onArrowRightPress);
-  window.removeEventListener('keydown', onArrowLeftPress);
-};
-
-function onCloseBtnClick() {
-  closeModal();
+  window.addEventListener('keydown', onKeyPress);
 };
   
 function onLightboxOverlayClick(event) {
   if (event.currentTarget === event.target) {
-    closeModal();
+    onCloseModal();
   };
-};
-  
-function onEscPress(event) {
-  //console.log(event);
-  if (event.code === 'Escape') {
-    closeModal();
-  }
 };
 
 function nextImage() {
@@ -107,14 +92,12 @@ function previousImage() {
   lightboxImageEl.src = images[index].original;
 };
 
-function onArrowRightPress(event) {
-  if (event.code === 'ArrowRight') {
+function onKeyPress(event) {
+  if (event.code === 'Escape') {
+    onCloseModal();
+  } else if (event.code === 'ArrowRight') {
     nextImage(images);
-  }
-};
-
-function onArrowLeftPress(event) {;
-  if (event.code === 'ArrowLeft') {
+  } else if (event.code === 'ArrowLeft') {
     previousImage(images);
   }
 };
